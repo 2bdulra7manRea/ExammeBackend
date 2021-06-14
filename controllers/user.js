@@ -33,7 +33,7 @@ module.exports.userRegister = async (req, res) => {
       name: result.name,
       id: result._id,
     };
-    let token = await jwt.sign(userProfile, process.env.JWT_SECRET);
+    let token = await jwt.sign(userProfile, 'SPRECHEN');
     let userAccount = {
       name: result.name,
       token: token,
@@ -58,7 +58,7 @@ module.exports.userLogin = async (req, res) => {
     if (resultHash) {
       const token = await jwt.sign(
         { name: doc.name, id: doc._id },
-        process.env.JWT_SECRET
+        'SPRECHEN'
       );
       let userAccount = {
         name: doc.name,

@@ -6,7 +6,7 @@ if(!token){
 res.json({message:"you are not authrized",case:0})
 }else{
 try {
-let decodedToken=await jwt.verify(token,process.env.JWT_SECRET);
+let decodedToken=await jwt.verify(token,'SPRECHEN');
 const resultUser=await user.findOne({_id:decodedToken.id,name:decodedToken.name});
 if(resultUser!==''){
     next();

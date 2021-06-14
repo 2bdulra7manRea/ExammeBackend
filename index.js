@@ -11,11 +11,11 @@ const socketConnecting = require("./socketConnect/socketConnection");
 require("dotenv").config();
 
 let PORT = process.env.PORT || 5000;
-const url = process.env.DB_MONGO;
+const url = process.env.DB_MONGO ||'mongodb+srv://petro:<password>@examcl.w8gsv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const http = require("http").createServer(app);
 const socket = require("socket.io")(http, {
   cors: {
-    origin: process.env.ORIGIN_CLINET,
+    origin:'https://exammefront.herokuapp.com/',
     credentials: true,
   },
 });
@@ -47,3 +47,6 @@ app.use("/blog/", blogRouter);
 app.use("/server/", examsRouter);
 app.use("/account", userRouter);
 app.use("/socket/", roomRouter);
+app.get('/check',(req,res)=>{
+res.json({message:"welcome"})
+})
