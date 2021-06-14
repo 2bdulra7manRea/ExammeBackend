@@ -26,11 +26,8 @@ jspm_packages/
 
 # Optional REPL history
 .node_repl_history
-
-
-
 # dotenv environment variables file
-.env
+
 
 # Transpiled JavaScript files from Typescript
 /dist
