@@ -15,7 +15,7 @@ const url = process.env.DB_MONGO ||'mongodb+srv://petro:<password>@examcl.w8gsv.
 const http = require("http").createServer(app);
 const socket = require("socket.io")(http, {
   cors: {
-    origin:'https://exammefront.herokuapp.com/',
+    origin:'https://exammefront.herokuapp.com',
     credentials: true,
   },
 });
@@ -47,6 +47,6 @@ app.use("/blog/", blogRouter);
 app.use("/server/", examsRouter);
 app.use("/account", userRouter);
 app.use("/socket/", roomRouter);
-app.get('/check',(req,res)=>{
-res.json({message:"welcome"})
+app.get('/',(req,res)=>{
+res.send('welcome')
 })
