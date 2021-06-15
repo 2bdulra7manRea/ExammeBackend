@@ -46,7 +46,7 @@ module.exports.userRegister = async (req, res) => {
     );
     sendingDoc(res, userAccount);
   } catch (error) {
-    sendingError(res, "User connot register", 500);
+    sendingError(res, error, 500);
   }
 };
 
