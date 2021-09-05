@@ -11,11 +11,15 @@ const socketConnecting = require("./socketConnect/socketConnection");
 require("dotenv").config();
 
 let PORT = process.env.PORT || 5000;
-const url = process.env.DB_MONGO ||'mongodb+srv://petro:1919@examcl.w8gsv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const url =process.env.DB_MONGO ||'mongodb+srv://petro:1919@examcl.w8gsv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//'mongodb://localhost:27017/YALL';
+// process.env.DB_MONGO ||'mongodb+srv://petro:1919@examcl.w8gsv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const http = require("http").createServer(app);
 const socket = require("socket.io")(http, {
   cors: {
     origin:'https://exammefront.herokuapp.com',
+    //'http://localhost:4200',
+    //'https://exammefront.herokuapp.com',
     credentials: true,
   },
 });

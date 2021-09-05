@@ -7,7 +7,7 @@ const router=require('express').Router();
 
 
 
-router.post('/register',upload.single("img"),userRegister);
+router.post('/register',userRegister);
 router.post('/login',userLogin);
 router.get('/myexams/user/:id',userExams)
 router.get('/users',getAllUsers)

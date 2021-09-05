@@ -15,15 +15,20 @@ function sendingDoc(res, doc) {
 }
 
 module.exports.userRegister = async (req, res) => {
-  console.log(req.file);
+
+/*
+if(req.file){
   const img = fs.readFileSync(req.file.path);
   let encode_img = img.toString("base64");
   var FinalImg = {
     type: req.file.mimetype,
     image: new Buffer.from(encode_img, "base64"),
   };
+}
+*/
 
   const { name, password, email } = req.body;
+  console.log(req.body)
   const salt = await bcrypt.genSalt();
   const hash = await bcrypt.hash(password, salt);
   const User = new user({ name, password: hash, email });

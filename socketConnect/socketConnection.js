@@ -8,6 +8,7 @@ const {
   deleteMyRoomBySocket,
 } = require("../controllers/roomController");
 const GetTime = require("../helpers/getTime");
+const { CheckUserInRoom } = require("../helpers/searchInRooms");
 
 function socketConnecting(socket) {
   return socket.on("connection", (userdata) => {
@@ -46,7 +47,22 @@ function socketConnecting(socket) {
           users
             .find({}, { _id: 1, name: 1, email: 1, state: 1 })
             .then((allUsers) => {
+              let timeLeaving = GetTime();
               socket.emit("allusers", { message: allUsers });
+              CheckUserInRoom(namePerson).then((val)=>{
+                if(val!==''){
+              leavingUser(val, namePerson).then((va) => {
+                socket.emit("OutsideView", { rooms: va });
+              });
+              socket
+                .to(val)
+                .emit("poepleInRoom", {
+                  messageSocket: namePerson,
+                  found: false,
+                  Time: timeLeaving,
+                }); 
+                }
+              })
             });
         });
     });
